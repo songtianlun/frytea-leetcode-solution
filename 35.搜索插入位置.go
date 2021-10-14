@@ -6,12 +6,18 @@
 
 // @lc code=start
 func searchInsert(nums []int, target int) int {
-	for i := 0; i < len(nums); i++ {
-		if nums[i] == target || nums[i] > target {
-			return i
+	left, right := 0, len(nums)-1
+	ans := len(nums)
+	for left <= right {
+		mid := (right-left)/2 + left
+		if nums[mid] >= target {
+			right = mid - 1
+			ans = mid
+		} else {
+			left = mid + 1
 		}
 	}
-	return len(nums)
+	return ans
 }
 
 // @lc code=end
